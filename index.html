@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login OCA</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: 
+                linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+                url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGRlZnM+CjxwYXR0ZXJuIGlkPSJneW0tcGF0dGVybiIgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPgo8cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iIzFhMWExYSIvPgo8ZyBvcGFjaXR5PSIwLjEiPgo8cmVjdCB4PSIxMCIgeT0iNDAiIHdpZHRoPSI4MCIgaGVpZ2h0PSI0IiBmaWxsPSIjNzc3Ii8+CjxyZWN0IHg9IjIwIiB5PSI0NSIgd2lkdGg9IjYwIiBoZWlnaHQ9IjIiIGZpbGw9IiM1NTUiLz4KPGNpcmNsZSBjeD0iMTUiIGN5PSI0MiIgcj0iMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzU1NSIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxjaXJjbGUgY3g9Ijg1IiBjeT0iNDIiIHI9IjEwIiBmaWxsPSJub25lIiBzdHJva2U9IiM1NTUiIHN0cm9rZS13aWR0aD0iMiIvPgo8L2c+CjwvcGF0dGVybj4KPC9kZWZzPgo8cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2d5bS1wYXR0ZXJuKSIvPgo8L3N2Zz4=');
+            background-size: 200px 200px;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        main {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 20px;
+        }
+
+        #login {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            box-shadow: 
+                0 25px 50px rgba(0,0,0,0.3),
+                0 0 0 1px rgba(255,255,255,0.1);
+            overflow: hidden;
+            animation: slideUp 0.8s ease-out;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        #imagem {
+            height: 160px;
+            background: 
+                linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.6)),
+                url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjE2MCIgdmlld0JveD0iMCAwIDQwMCAxNjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxkZWZzPgo8cGF0dGVybiBpZD0iZ3ltLWJnIiB4PSIwIiB5PSIwIiB3aWR0aD0iODAiIGhlaWdodD0iODAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPgo8cmVjdCB3aWR0aD0iODAiIGhlaWdodD0iODAiIGZpbGw9IiMyMjIiLz4KPGcgb3BhY2l0eT0iMC4zIj4KPGVsbGlwc2UgY3g9IjE1IiBjeT0iNDAiIHJ4PSIxMiIgcnk9IjQiIGZpbGw9IiM0NDQiLz4KPGVsbGlwc2UgY3g9IjY1IiBjeT0iNDAiIHJ4PSIxMiIgcnk9IjQiIGZpbGw9IiM0NDQiLz4KPHJlY3QgeD0iMjUiIHk9IjM4IiB3aWR0aD0iMzAiIGhlaWdodD0iNCIgZmlsbD0iIzU1NSIvPgo8cmVjdCB4PSIzNSIgeT0iMzAiIHdpZHRoPSIxMCIgaGVpZ2h0PSIyMCIgZmlsbD0iIzMzMyIvPgo8L2c+CjwvcGF0dGVybj4KPC9kZWZzPgo8cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjE2MCIgZmlsbD0idXJsKCNneW0tYmcpIi8+Cjwvc3ZnPg==');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #imagem::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 100%);
+        }
+
+        .logo-container {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: white;
+        }
+
+        .logo-oca {
+            font-size: 48px;
+            font-weight: 900;
+            letter-spacing: -2px;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            font-family: 'Arial Black', sans-serif;
+        }
+
+        .logo-subtitle {
+            font-size: 12px;
+            font-weight: 300;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            opacity: 0.9;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        #imagem::after {
+            display: none;
+        }
+
+        #formulario {
+            padding: 50px 40px 40px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        p {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+
+        .campo {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        input[type="email"], 
+        input[type="password"] {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e1e1e1;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: #fafafa;
+        }
+
+        input[type="email"]:focus, 
+        input[type="password"]:focus {
+            outline: none;
+            border-color: #1a1a1a;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(26, 26, 26, 0.1);
+        }
+
+        .campo.error input {
+            border-color: #e74c3c;
+            background: #ffeaea;
+        }
+
+        .error-msg {
+            color: #e74c3c;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .button-group {
+            margin-top: 30px;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #1a1a1a, #333);
+            color: white;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+            background: linear-gradient(135deg, #000, #1a1a1a);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #1a1a1a;
+            border: 2px solid #1a1a1a;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .btn-secondary:hover:not(:disabled) {
+            background: #1a1a1a;
+            color: white;
+        }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .loading-spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid transparent;
+            border-top: 2px solid currentColor;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            margin-right: 8px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(4px);
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: white;
+            margin: 10% auto;
+            padding: 30px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            animation: modalSlide 0.3s ease;
+            position: relative;
+        }
+
+        @keyframes modalSlide {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-content h3 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .modal-content p {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .modal-close {
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #999;
+            width: auto;
+            padding: 5px;
+            margin: 0;
+        }
+
+        .modal-close:hover {
+            color: #333;
+        }
+
+        @media (max-width: 480px) {
+            #formulario {
+                padding: 30px 20px 20px;
+            }
+            
+            main {
+                margin: 0 10px;
+            }
+        }
+
+        /* Accessibility improvements */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            white-space: nowrap;
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <section id="login">
+            <div id="imagem">
+                <div class="logo-container">
+                    <div class="logo-oca">OCA</div>
+                    <div class="logo-subtitle">ARTHUR VARGAS</div>
+                </div>
+            </div>
+            <div id="formulario">
+                <h1>Login</h1>
+                <p>Seja bem-vindo(a) novamente. Faça login para acessar sua conta e seu ambiente de treino!</p>
+                
+                <form id="loginForm" novalidate>
+                    <div class="campo">
+                        <label for="email">Email</label>
+                        <input 
+                            type="email" 
+                            name="email" 
+                            id="email" 
+                            autocomplete="email"
+                            required
+                            aria-describedby="email-error"
+                        >
+                        <div class="error-msg" id="email-error" role="alert"></div>
+                    </div>
+                    
+                    <div class="campo">
+                        <label for="password">Senha</label>
+                        <input 
+                            type="password" 
+                            name="password" 
+                            id="password" 
+                            autocomplete="current-password"
+                            required
+                            aria-describedby="password-error"
+                        >
+                        <div class="error-msg" id="password-error" role="alert"></div>
+                    </div>
+                    
+                    <div class="button-group">
+                        <button type="submit" class="btn-primary" id="loginBtn">
+                            <span class="btn-text">Entrar</span>
+                        </button>
+                        
+                        <button type="button" class="btn-secondary" onclick="window.location.href='cadastre-se.html'">
+                            Cadastre-se
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Accessible Modal -->
+    <div id="modal" class="modal" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description" aria-hidden="true">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()" aria-label="Fechar modal">&times;</button>
+            <h3 id="modal-title">Notificação</h3>
+            <p id="modal-description">Mensagem aqui</p>
+            <button type="button" class="btn-primary" onclick="closeModal()">Entendi</button>
+        </div>
+    </div>
+
+    <script>
+        class LoginManager {
+            constructor() {
+                this.form = document.getElementById('loginForm');
+                this.loginBtn = document.getElementById('loginBtn');
+                this.modal = document.getElementById('modal');
+                this.isLoading = false;
+                
+                this.init();
+            }
+            
+            init() {
+                this.form.addEventListener('submit', this.handleSubmit.bind(this));
+                this.setupValidation();
+                this.setupKeyboardNavigation();
+            }
+            
+            setupValidation() {
+                const inputs = this.form.querySelectorAll('input[required]');
+                inputs.forEach(input => {
+                    input.addEventListener('blur', () => this.validateField(input));
+                    input.addEventListener('input', () => this.clearFieldError(input));
+                });
+            }
+            
+            setupKeyboardNavigation() {
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && this.modal.style.display === 'block') {
+                        this.closeModal();
+                    }
+                });
+            }
+            
+            validateField(input) {
+                const field = input.closest('.campo');
+                const errorElement = field.querySelector('.error-msg');
+                let isValid = true;
+                let errorMessage = '';
+                
+                if (input.type === 'email') {
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!input.value.trim()) {
+                        errorMessage = 'Email é obrigatório';
+                        isValid = false;
+                    } else if (!emailRegex.test(input.value)) {
+                        errorMessage = 'Email inválido';
+                        isValid = false;
+                    }
+                } else if (input.type === 'password') {
+                    if (!input.value.trim()) {
+                        errorMessage = 'Senha é obrigatória';
+                        isValid = false;
+                    } else if (input.value.length < 6) {
+                        errorMessage = 'Senha deve ter pelo menos 6 caracteres';
+                        isValid = false;
+                    }
+                }
+                
+                this.setFieldError(field, errorElement, errorMessage);
+                return isValid;
+            }
+            
+            setFieldError(field, errorElement, message) {
+                if (message) {
+                    field.classList.add('error');
+                    errorElement.textContent = message;
+                    errorElement.style.display = 'block';
+                } else {
+                    field.classList.remove('error');
+                    errorElement.style.display = 'none';
+                }
+            }
+            
+            clearFieldError(input) {
+                const field = input.closest('.campo');
+                const errorElement = field.querySelector('.error-msg');
+                field.classList.remove('error');
+                errorElement.style.display = 'none';
+            }
+            
+            async handleSubmit(e) {
+                e.preventDefault();
+                
+                if (this.isLoading) return;
+                
+                const formData = new FormData(this.form);
+                const email = formData.get('email');
+                const password = formData.get('password');
+                
+                // Validate all fields
+                const emailInput = this.form.querySelector('#email');
+                const passwordInput = this.form.querySelector('#password');
+                
+                const emailValid = this.validateField(emailInput);
+                const passwordValid = this.validateField(passwordInput);
+                
+                if (!emailValid || !passwordValid) {
+                    this.showModal('Erro de Validação', 'Por favor, corrija os erros antes de continuar.');
+                    return;
+                }
+                
+                this.setLoading(true);
+                
+                try {
+                    // Simulate API call
+                    await this.simulateLogin(email, password);
+                    
+                    // Salvar estado de login
+                    localStorage.setItem('userLoggedIn', 'true');
+                    localStorage.setItem('userEmail', email);
+                    
+                    this.showModal('Sucesso!', 'Login realizado com sucesso! Redirecionando...', () => {
+                        // Redirect to dashboard
+                        window.location.href = 'area-cliente/dashboard.html';
+                    });
+                    
+                } catch (error) {
+                    this.showModal('Erro no Login', error.message || 'Erro interno do servidor. Tente novamente.');
+                } finally {
+                    this.setLoading(false);
+                }
+            }
+            
+            async simulateLogin(email, password) {
+                // Simulate network delay
+                await new Promise(resolve => setTimeout(resolve, 1500));
+                
+                // Simulate different responses
+                if (password === '123456') {
+                    throw new Error('Credenciais inválidas. Verifique seu email e senha.');
+                }
+                
+                if (email === 'test@blocked.com') {
+                    throw new Error('Conta temporariamente bloqueada. Contate o suporte.');
+                }
+                
+                // Simulate success
+                return { success: true, token: 'fake-jwt-token' };
+            }
+            
+            setLoading(loading) {
+                this.isLoading = loading;
+                const btnText = this.loginBtn.querySelector('.btn-text');
+                
+                if (loading) {
+                    this.loginBtn.disabled = true;
+                    btnText.innerHTML = '<span class="loading-spinner"></span>Entrando...';
+                } else {
+                    this.loginBtn.disabled = false;
+                    btnText.textContent = 'Entrar';
+                }
+            }
+            
+            showModal(title, message, callback = null) {
+                const modalTitle = document.getElementById('modal-title');
+                const modalDescription = document.getElementById('modal-description');
+                
+                modalTitle.textContent = title;
+                modalDescription.textContent = message;
+                
+                this.modal.style.display = 'block';
+                this.modal.setAttribute('aria-hidden', 'false');
+                
+                // Focus management
+                const closeBtn = this.modal.querySelector('.modal-close');
+                closeBtn.focus();
+                
+                // Store callback for after modal closes
+                this.modalCallback = callback;
+            }
+            
+            closeModal() {
+                this.modal.style.display = 'none';
+                this.modal.setAttribute('aria-hidden', 'true');
+                
+                // Return focus to form
+                this.form.querySelector('#email').focus();
+                
+                // Execute callback if provided
+                if (this.modalCallback) {
+                    this.modalCallback();
+                    this.modalCallback = null;
+                }
+            }
+        }
+        
+        // Global functions for backward compatibility
+        function closeModal() {
+            if (window.loginManager) {
+                window.loginManager.closeModal();
+            }
+        }
+        
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            window.loginManager = new LoginManager();
+        });
+    </script>
+</body>
+</html>

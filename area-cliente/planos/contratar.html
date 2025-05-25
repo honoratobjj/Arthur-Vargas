@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contratar Plano - OCA</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: 
+                linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+                url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGRlZnM+CjxwYXR0ZXJuIGlkPSJneW0tcGF0dGVybiIgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPgo8cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iIzFhMWExYSIvPgo8ZyBvcGFjaXR5PSIwLjEiPgo8cmVjdCB4PSIxMCIgeT0iNDAiIHdpZHRoPSI4MCIgaGVpZ2h0PSI0IiBmaWxsPSIjNzc3Ii8+CjxyZWN0IHg9IjIwIiB5PSI0NSIgd2lkdGg9IjYwIiBoZWlnaHQ9IjIiIGZpbGw9IiM1NTUiLz4KPGNpcmNsZSBjeD0iMTUiIGN5PSI0MiIgcj0iMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzU1NSIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxjaXJjbGUgY3g9Ijg1IiBjeT0iNDIiIHI9IjEwIiBmaWxsPSJub25lIiBzdHJva2U9IiM1NTUiIHN0cm9rZS13aWR0aD0iMiIvPgo8L2c+CjwvcGF0dGVybj4KPC9kZWZzPgo8cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2d5bS1wYXR0ZXJuKSIvPgo8L3N2Zz4=');
+            background-size: 200px 200px;
+            background-attachment: fixed;
+            min-height: 100vh;
+            color: white;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-oca {
+            font-size: 28px;
+            font-weight: 900;
+            letter-spacing: -2px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            font-family: 'Arial Black', sans-serif;
+        }
+
+        .logo-subtitle {
+            font-size: 8px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.9;
+            color: #ccc;
+        }
+
+        .btn-back {
+            background: linear-gradient(135deg, #1a1a1a, #333);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .btn-back:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+            background: linear-gradient(135deg, #000, #1a1a1a);
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .user-photo {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid rgba(255,255,255,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .user-photo:hover {
+            border-color: white;
+            transform: scale(1.05);
+        }
+
+        .user-name {
+            font-size: 12px;
+            color: #ccc;
+            font-weight: 500;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .page-title h1 {
+            font-size: 42px;
+            font-weight: 900;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #fff, #ccc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .page-title p {
+            font-size: 16px;
+            color: #ccc;
+            line-height: 1.6;
+        }
+
+        .plans-container {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .plan-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            box-shadow: 
+                0 25px 50px rgba(0,0,0,0.3),
+                0 0 0 1px rgba(255,255,255,0.1);
+            overflow: hidden;
+            animation: slideUp 0.8s ease-out;
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #333;
+            transition: all 0.3s ease;
+        }
+
+        .plan-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 35px 70px rgba(0,0,0,0.4);
+        }
+
+        .plan-card.featured {
+            border: 2px solid #1a1a1a;
+            transform: scale(1.05);
+        }
+
+        .plan-header {
+            height: 80px;
+            background: 
+                linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.6)),
+                url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjgwIiB2aWV3Qm94PSIwIDAgNDAwIDgwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8ZGVmcz4KPHN0eWxlPi5jbHMtMXtmaWxsOiMzMzM7fS5jbHMtMntmaWxsOiM1NTU7fTwvc3R5bGU+CjwvZGVmcz4KPHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSI4MCIgZmlsbD0iIzIyMiIvPgo8L3N2Zz4=');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .plan-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 100%);
+        }
+
+        .plan-name {
+            position: relative;
+            z-index: 2;
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .plan-content {
+            padding: 30px;
+        }
+
+        .plan-price {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .price-value {
+            font-size: 36px;
+            font-weight: 900;
+            color: #1a1a1a;
+            margin-bottom: 5px;
+        }
+
+        .price-period {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .plan-features li {
+            padding: 8px 0;
+            color: #555;
+            font-size: 14px;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .plan-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #1a1a1a;
+            font-weight: bold;
+        }
+
+        .btn-plan {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #1a1a1a, #333);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-plan:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+            background: linear-gradient(135deg, #000, #1a1a1a);
+        }
+
+        .featured-badge {
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            background: #1a1a1a;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .page-title h1 {
+                font-size: 32px;
+            }
+            
+            header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .logo-container {
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            .plans-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .plan-card.featured {
+                transform: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            main {
+                padding: 20px 10px;
+            }
+            
+            .plan-content {
+                padding: 20px;
+            }
+            
+            .page-title h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <div class="logo-oca">OCA</div>
+            <div class="logo-subtitle">ARTHUR VARGAS</div>
+        </div>
+        
+        <a href="index.html" class="btn-back">Voltar</a>
+        
+        <div class="user-info">
+            <img src="https://via.placeholder.com/48" alt="Foto do usuário" class="user-photo" />
+            <div class="user-name">João Silva</div>
+        </div>
+    </header>
+
+    <main>
+        <div class="page-title">
+            <h1>Escolha seu Plano</h1>
+            <p>Transforme seu corpo com nossos programas de treino personalizados</p>
+        </div>
+
+        <div class="plans-container">
+            <div class="plan-card">
+                <div class="plan-header">
+                    <div class="plan-name">Plano Básico</div>
+                </div>
+                
+                <div class="plan-content">
+                    <div class="plan-price">
+                        <div class="price-value">R$ 29,90</div>
+                        <div class="price-period">por mês</div>
+                    </div>
+                    
+                    <ul class="plan-features">
+                        <li>Acesso aos treinos básicos</li>
+                        <li>Treino masculino iniciante</li>
+                        <li>Treino feminino iniciante</li>
+                        <li>Suporte por email</li>
+                        <li>Atualizações mensais</li>
+                    </ul>
+                    
+                    <button class="btn-plan" onclick="contratarPlano('basico')">
+                        Contratar Agora
+                    </button>
+                </div>
+            </div>
+
+            <div class="plan-card featured">
+                <div class="featured-badge">Mais Popular</div>
+                <div class="plan-header">
+                    <div class="plan-name">Plano Premium</div>
+                </div>
+                
+                <div class="plan-content">
+                    <div class="plan-price">
+                        <div class="price-value">R$ 49,90</div>
+                        <div class="price-period">por mês</div>
+                    </div>
+                    
+                    <ul class="plan-features">
+                        <li>Acesso completo aos treinos</li>
+                        <li>Todos os níveis (iniciante, intermediário, avançado)</li>
+                        <li>Treinos 2x, 3x e 6x por semana</li>
+                        <li>Suporte prioritário</li>
+                        <li>Atualizações semanais</li>
+                        <li>Planos de nutrição básicos</li>
+                    </ul>
+                    
+                    <button class="btn-plan" onclick="contratarPlano('premium')">
+                        Contratar Agora
+                    </button>
+                </div>
+            </div>
+
+            <div class="plan-card">
+                <div class="plan-header">
+                    <div class="plan-name">Plano Elite</div>
+                </div>
+                
+                <div class="plan-content">
+                    <div class="plan-price">
+                        <div class="price-value">R$ 79,90</div>
+                        <div class="price-period">por mês</div>
+                    </div>
+                    
+                    <ul class="plan-features">
+                        <li>Tudo do plano Premium</li>
+                        <li>Consultoria personalizada</li>
+                        <li>Planos de nutrição avançados</li>
+                        <li>Suporte 24/7</li>
+                        <li>Acompanhamento semanal</li>
+                        <li>Acesso antecipado a novos treinos</li>
+                        <li>Grupo VIP no WhatsApp</li>
+                    </ul>
+                    
+                    <button class="btn-plan" onclick="contratarPlano('elite')">
+                        Contratar Agora
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Verificar se o usuário está logado (simulação)
+        document.addEventListener('DOMContentLoaded', () => {
+            const isLoggedIn = localStorage.getItem('userLoggedIn');
+            if (!isLoggedIn) {
+                window.location.href = '../../index.html';
+            }
+        });
+
+        function contratarPlano(plano) {
+            // Simular processo de contratação
+            const planos = {
+                'basico': 'Plano Básico - R$ 29,90/mês',
+                'premium': 'Plano Premium - R$ 49,90/mês',
+                'elite': 'Plano Elite - R$ 79,90/mês'
+            };
+            
+            if (confirm(`Confirma a contratação do ${planos[plano]}?`)) {
+                alert('Redirecionando para o pagamento...');
+                // Aqui seria integrado com gateway de pagamento
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 2000);
+            }
+        }
+    </script>
+</body>
+</html> 

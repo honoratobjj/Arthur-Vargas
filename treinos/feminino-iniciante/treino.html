@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treino Feminino Iniciante - OCA</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: 
+                linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+                url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGRlZnM+CjxwYXR0ZXJuIGlkPSJneW0tcGF0dGVybiIgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPgo8cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iIzFhMWExYSIvPgo8ZyBvcGFjaXR5PSIwLjEiPgo8cmVjdCB4PSIxMCIgeT0iNDAiIHdpZHRoPSI4MCIgaGVpZ2h0PSI0IiBmaWxsPSIjNzc3Ii8+CjxyZWN0IHg9IjIwIiB5PSI0NSIgd2lkdGg9IjYwIiBoZWlnaHQ9IjIiIGZpbGw9IiM1NTUiLz4KPGNpcmNsZSBjeD0iMTUiIGN5PSI0MiIgcj0iMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzU1NSIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxjaXJjbGUgY3g9Ijg1IiBjeT0iNDIiIHI9IjEwIiBmaWxsPSJub25lIiBzdHJva2U9IiM1NTUiIHN0cm9rZS13aWR0aD0iMiIvPgo8L2c+CjwvcGF0dGVybj4KPC9kZWZzPgo8cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2d5bS1wYXR0ZXJuKSIvPgo8L3N2Zz4=');
+            background-size: 200px 200px;
+            background-attachment: fixed;
+            min-height: 100vh;
+            color: white;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            animation: fadeIn 0.6s ease-in-out;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-oca {
+            font-size: 28px;
+            font-weight: 900;
+            letter-spacing: -2px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            font-family: 'Arial Black', sans-serif;
+        }
+
+        .logo-subtitle {
+            font-size: 8px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.9;
+            color: #ccc;
+        }
+
+        .btn-back {
+            background: linear-gradient(135deg, #1a1a1a, #333);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .btn-back:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+            background: linear-gradient(135deg, #000, #1a1a1a);
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .user-photo {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid rgba(255,255,255,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .user-photo:hover {
+            border-color: white;
+            transform: scale(1.05);
+        }
+
+        .user-name {
+            font-size: 12px;
+            color: #ccc;
+            font-weight: 500;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            text-align: center;
+            animation: slideUp 0.5s ease-in-out;
+        }
+
+        .workout-header {
+            margin-bottom: 30px;
+        }
+
+        .workout-header h1 {
+            font-size: 42px;
+            font-weight: 900;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #fff, #ccc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .workout-header p {
+            font-size: 16px;
+            color: #ccc;
+            margin-bottom: 10px;
+        }
+
+        .video-container {
+            width: 100%;
+            max-width: 800px;
+            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            box-shadow: 
+                0 25px 50px rgba(0,0,0,0.3),
+                0 0 0 1px rgba(255,255,255,0.1);
+            overflow: hidden;
+            animation: fadeIn 0.6s ease-in-out;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .video-header {
+            background: 
+                linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.6)),
+                url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjgwIiB2aWV3Qm94PSIwIDAgNDAwIDgwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8ZGVmcz4KPHN0eWxlPi5jbHMtMXtmaWxsOiMzMzM7fS5jbHMtMntmaWxsOiM1NTU7fTwvc3R5bGU+CjwvZGVmcz4KPHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSI4MCIgZmlsbD0iIzIyMiIvPgo8L3N2Zz4=');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            padding: 20px;
+            color: white;
+        }
+
+        .video-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 100%);
+        }
+
+        .video-title {
+            position: relative;
+            z-index: 2;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .video-description {
+            position: relative;
+            z-index: 2;
+            font-size: 14px;
+            color: #ccc;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .video-content {
+            padding: 0;
+        }
+
+        iframe {
+            width: 100%;
+            height: 450px;
+            border: none;
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-control {
+            padding: 14px 28px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #1a1a1a, #333);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+            background: linear-gradient(135deg, #000, #1a1a1a);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: white;
+        }
+
+        footer {
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .footer-tips {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .tip {
+            font-size: 14px;
+            color: #ccc;
+            max-width: 300px;
+        }
+
+        .tip strong {
+            color: white;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .logo-container {
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            .workout-header h1 {
+                font-size: 32px;
+            }
+            
+            iframe {
+                height: 250px;
+            }
+            
+            .controls {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn-control {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .footer-tips {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            main {
+                padding: 20px 10px;
+            }
+            
+            .workout-header h1 {
+                font-size: 24px;
+            }
+            
+            iframe {
+                height: 200px;
+            }
+        }
+
+        /* Estilos para o painel lateral de exercícios */
+        .exercise-panel {
+            position: fixed;
+            right: -350px;
+            top: 0;
+            width: 350px;
+            height: 100vh;
+            background: rgba(0,0,0,0.95);
+            backdrop-filter: blur(10px);
+            border-left: 1px solid rgba(255,255,255,0.1);
+            transition: right 0.3s ease;
+            z-index: 2000;
+            overflow-y: auto;
+        }
+
+        .exercise-panel.open {
+            right: 0;
+        }
+
+        .panel-header {
+            padding: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .panel-title {
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .btn-close-panel {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 4px;
+            transition: background 0.3s ease;
+        }
+
+        .btn-close-panel:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .exercise-list {
+            padding: 20px;
+        }
+
+        .exercise-item {
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+        }
+
+        .exercise-item:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .exercise-item.current {
+            border-color: #fff;
+            background: rgba(255,255,255,0.2);
+        }
+
+        .exercise-item.completed {
+            background: rgba(0,255,0,0.2);
+            border-color: #00ff00;
+        }
+
+        .exercise-item.pending {
+            background: rgba(255,165,0,0.2);
+            border-color: #ffa500;
+        }
+
+        .exercise-name {
+            color: white;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .exercise-reps {
+            color: #ccc;
+            font-size: 12px;
+        }
+
+        .exercise-status {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 18px;
+        }
+
+        .btn-toggle-panel {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: linear-gradient(135deg, #1a1a1a, #333);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1500;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .btn-toggle-panel:hover {
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+        }
+
+        .controls-enhanced {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .btn-mark-completed {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+        }
+
+        .btn-mark-pending {
+            background: linear-gradient(135deg, #ffc107, #fd7e14);
+            color: white;
+        }
+
+        .btn-mark-completed:hover,
+        .btn-mark-pending:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+        }
+
+        .progress-bar {
+            background: rgba(255,255,255,0.1);
+            height: 6px;
+            border-radius: 3px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #28a745, #20c997);
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .progress-text {
+            text-align: center;
+            color: #ccc;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .exercise-panel {
+                width: 100%;
+                right: -100%;
+            }
+            
+            .btn-toggle-panel {
+                right: 15px;
+                width: 50px;
+                height: 50px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <div class="logo-oca">OCA</div>
+            <div class="logo-subtitle">ARTHUR VARGAS</div>
+        </div>
+        
+        <a href="index.html" class="btn-back">Voltar</a>
+        
+        <div class="user-info">
+            <img src="https://via.placeholder.com/48" alt="Foto do usuário" class="user-photo" />
+            <div class="user-name">Maria Silva</div>
+        </div>
+    </header>
+
+    <main>
+        <div class="workout-header">
+            <h1>Treino Feminino</h1>
+            <p>Programa Iniciante - Corpo Completo</p>
+        </div>
+
+        <div class="video-container" id="videoContainer">
+            <div class="video-header">
+                <div class="video-title" id="videoTitle">Carregando exercício...</div>
+                <div class="video-description" id="videoDescription">Preparando seu treino...</div>
+            </div>
+            <div class="video-content">
+                <div id="videoPlayer"></div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="btn-control btn-secondary" onclick="anteriorVideo()">
+                ← Anterior
+            </button>
+            <button class="btn-control btn-primary" onclick="proximoVideo()">
+                Próximo →
+            </button>
+        </div>
+
+        <div class="progress-text">Progresso do Treino</div>
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+        <div class="controls-enhanced">
+            <button class="btn-control btn-mark-completed" onclick="markCurrentAsCompleted()">
+                ✓ Concluído
+            </button>
+            <button class="btn-control btn-mark-pending" onclick="markCurrentAsPending()">
+                ⏸ Deixar Pendente
+            </button>
+            <button class="btn-control btn-secondary" onclick="toggleExercisePanel()">
+                📋 Lista de Exercícios
+            </button>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-tips">
+            <div class="tip">
+                <strong>Descanso</strong>
+                Descanse de 30 a 45 segundos entre as séries para melhor recuperação.
+            </div>
+            <div class="tip">
+                <strong>Execução</strong>
+                Foque na técnica correta e movimentos controlados.
+            </div>
+            <div class="tip">
+                <strong>Progressão</strong>
+                Aumente gradualmente a intensidade conforme sua evolução.
+            </div>
+        </div>
+    </footer>
+
+    <div class="exercise-panel" id="exercisePanel">
+        <div class="panel-header">
+            <div class="panel-title">Exercícios do Treino</div>
+            <button class="btn-close-panel" onclick="toggleExercisePanel()">×</button>
+        </div>
+        <div class="exercise-list" id="exerciseList">
+            <!-- Lista será preenchida via JavaScript -->
+        </div>
+    </div>
+
+    <button class="btn-toggle-panel" onclick="toggleExercisePanel()" title="Lista de Exercícios">
+        📋
+    </button>
+
+    <script>
+        const videos = [
+            {
+                src: "https://www.youtube.com/embed/dQw4w9WgXcQ?controls=1",
+                title: "Agachamento Livre",
+                desc: "3 Séries de 12-15 Repetições - Exercício fundamental para pernas e glúteos",
+                status: "pending"
+            },
+            {
+                src: "https://www.youtube.com/embed/dQw4w9WgXcQ?controls=1",
+                title: "Flexão de Braços (Joelhos)",
+                desc: "3 Séries de 8-12 Repetições - Fortalecimento do peitoral e braços",
+                status: "pending"
+            },
+            {
+                src: "https://www.youtube.com/embed/dQw4w9WgXcQ?controls=1",
+                title: "Prancha Abdominal",
+                desc: "3 Séries de 20-30 segundos - Fortalecimento do core",
+                status: "pending"
+            },
+            {
+                src: "https://www.youtube.com/embed/dQw4w9WgXcQ?controls=1",
+                title: "Elevação Pélvica",
+                desc: "3 Séries de 15 Repetições - Trabalho específico para glúteos",
+                status: "pending"
+            },
+            {
+                src: "https://www.youtube.com/embed/dQw4w9WgXcQ?controls=1",
+                title: "Remada com Elástico",
+                desc: "3 Séries de 12 Repetições - Fortalecimento das costas",
+                status: "pending"
+            },
+            {
+                src: "https://www.youtube.com/embed/dQw4w9WgXcQ?controls=1",
+                title: "Afundo Alternado",
+                desc: "3 Séries de 10 por perna - Trabalho unilateral das pernas",
+                status: "pending"
+            },
+            {
+                src: "https://www.youtube.com/embed/dQw4w9WgXcQ?controls=1",
+                title: "Elevação Lateral com Garrafas",
+                desc: "3 Séries de 12 Repetições - Fortalecimento dos ombros",
+                status: "pending"
+            },
+            {
+                src: "https://www.youtube.com/embed/dQw4w9WgXcQ?controls=1",
+                title: "Alongamento Final",
+                desc: "5-10 minutos - Relaxamento e flexibilidade",
+                status: "pending"
+            }
+        ];
+
+        let currentVideoIndex = 0;
+
+        function loadVideo(index) {
+            if (index < 0 || index >= videos.length) return;
+            
+            // Atualizar status do exercício anterior
+            if (currentVideoIndex !== index) {
+                videos.forEach((video, i) => {
+                    if (i === currentVideoIndex) {
+                        video.status = video.status === "completed" ? "completed" : "current";
+                    } else if (i === index) {
+                        video.status = "current";
+                    } else if (video.status === "current") {
+                        video.status = "pending";
+                    }
+                });
+            }
+            
+            const video = videos[index];
+            const videoPlayer = document.getElementById('videoPlayer');
+            const videoTitle = document.getElementById('videoTitle');
+            const videoDescription = document.getElementById('videoDescription');
+            
+            videoPlayer.innerHTML = `<iframe src="${video.src}" allowfullscreen></iframe>`;
+            videoTitle.textContent = video.title;
+            videoDescription.textContent = video.desc;
+            
+            currentVideoIndex = index;
+            
+            // Atualizar interface
+            updateButtonStates();
+            updateExerciseList();
+            updateProgress();
+        }
+
+        function proximoVideo() {
+            // Encontrar próximo exercício não concluído
+            let nextIndex = -1;
+            for (let i = currentVideoIndex + 1; i < videos.length; i++) {
+                if (videos[i].status !== "completed") {
+                    nextIndex = i;
+                    break;
+                }
+            }
+            
+            // Se não encontrou, procurar do início
+            if (nextIndex === -1) {
+                for (let i = 0; i < currentVideoIndex; i++) {
+                    if (videos[i].status !== "completed") {
+                        nextIndex = i;
+                        break;
+                    }
+                }
+            }
+            
+            if (nextIndex !== -1) {
+                loadVideo(nextIndex);
+            } else {
+                // Todos os exercícios foram concluídos
+                finalizarTreino();
+            }
+        }
+
+        function anteriorVideo() {
+            // Encontrar exercício anterior não concluído
+            let prevIndex = -1;
+            for (let i = currentVideoIndex - 1; i >= 0; i--) {
+                if (videos[i].status !== "completed") {
+                    prevIndex = i;
+                    break;
+                }
+            }
+            
+            // Se não encontrou, procurar do final
+            if (prevIndex === -1) {
+                for (let i = videos.length - 1; i > currentVideoIndex; i--) {
+                    if (videos[i].status !== "completed") {
+                        prevIndex = i;
+                        break;
+                    }
+                }
+            }
+            
+            if (prevIndex !== -1) {
+                loadVideo(prevIndex);
+            }
+        }
+
+        function selectExercise(index) {
+            loadVideo(index);
+            toggleExercisePanel(); // Fechar painel após seleção
+        }
+
+        function markCurrentAsCompleted() {
+            videos[currentVideoIndex].status = "completed";
+            updateExerciseList();
+            updateProgress();
+            
+            // Ir para próximo exercício automaticamente
+            setTimeout(() => {
+                proximoVideo();
+            }, 500);
+        }
+
+        function markCurrentAsPending() {
+            videos[currentVideoIndex].status = "pending";
+            updateExerciseList();
+            updateProgress();
+            
+            // Ir para próximo exercício
+            setTimeout(() => {
+                proximoVideo();
+            }, 500);
+        }
+
+        function updateButtonStates() {
+            const btnAnterior = document.querySelector('.btn-secondary');
+            const btnProximo = document.querySelector('.btn-primary');
+            
+            // Verificar se há exercícios pendentes
+            const hasPendingBefore = videos.slice(0, currentVideoIndex).some(v => v.status !== "completed");
+            const hasPendingAfter = videos.slice(currentVideoIndex + 1).some(v => v.status !== "completed");
+            
+            // Botão anterior
+            if (hasPendingBefore) {
+                btnAnterior.style.opacity = '1';
+                btnAnterior.style.cursor = 'pointer';
+            } else {
+                btnAnterior.style.opacity = '0.5';
+                btnAnterior.style.cursor = 'not-allowed';
+            }
+            
+            // Botão próximo
+            if (hasPendingAfter) {
+                btnProximo.textContent = 'Próximo →';
+                btnProximo.onclick = proximoVideo;
+            } else {
+                const allCompleted = videos.every(v => v.status === "completed");
+                if (allCompleted) {
+                    btnProximo.textContent = 'Finalizar';
+                    btnProximo.onclick = finalizarTreino;
+                } else {
+                    btnProximo.textContent = 'Próximo →';
+                    btnProximo.onclick = proximoVideo;
+                }
+            }
+        }
+
+        function updateExerciseList() {
+            const exerciseList = document.getElementById('exerciseList');
+            exerciseList.innerHTML = '';
+            
+            videos.forEach((video, index) => {
+                const exerciseItem = document.createElement('div');
+                exerciseItem.className = `exercise-item ${video.status}`;
+                if (index === currentVideoIndex) {
+                    exerciseItem.classList.add('current');
+                }
+                
+                let statusIcon = '';
+                switch (video.status) {
+                    case 'completed':
+                        statusIcon = '✅';
+                        break;
+                    case 'current':
+                        statusIcon = '▶️';
+                        break;
+                    case 'pending':
+                        statusIcon = '⏸️';
+                        break;
+                }
+                
+                exerciseItem.innerHTML = `
+                    <div class="exercise-status">${statusIcon}</div>
+                    <div class="exercise-name">${video.title}</div>
+                    <div class="exercise-reps">${video.desc.split(' - ')[0]}</div>
+                `;
+                
+                exerciseItem.onclick = () => selectExercise(index);
+                exerciseList.appendChild(exerciseItem);
+            });
+        }
+
+        function updateProgress() {
+            const completed = videos.filter(v => v.status === "completed").length;
+            const total = videos.length;
+            const percentage = (completed / total) * 100;
+            
+            const progressFill = document.getElementById('progressFill');
+            const progressText = document.querySelector('.progress-text');
+            
+            progressFill.style.width = `${percentage}%`;
+            progressText.textContent = `Progresso do Treino: ${completed}/${total} exercícios concluídos`;
+        }
+
+        function toggleExercisePanel() {
+            const panel = document.getElementById('exercisePanel');
+            panel.classList.toggle('open');
+        }
+
+        function finalizarTreino() {
+            const completed = videos.filter(v => v.status === "completed").length;
+            const pending = videos.filter(v => v.status === "pending").length;
+            
+            let message = `Parabéns! Você completou o Treino Feminino Iniciante!\n\n`;
+            message += `✅ Exercícios concluídos: ${completed}\n`;
+            if (pending > 0) {
+                message += `⏸️ Exercícios pendentes: ${pending}\n\n`;
+                message += `Lembre-se de fazer os exercícios pendentes quando os equipamentos estiverem disponíveis!`;
+            }
+            
+            alert(message);
+            window.location.href = 'index.html';
+        }
+
+        // Fechar painel ao clicar fora
+        document.addEventListener('click', function(event) {
+            const panel = document.getElementById('exercisePanel');
+            const toggleBtn = document.querySelector('.btn-toggle-panel');
+            const panelBtn = document.querySelector('[onclick="toggleExercisePanel()"]');
+            
+            if (!panel.contains(event.target) && 
+                event.target !== toggleBtn && 
+                event.target !== panelBtn &&
+                !event.target.closest('[onclick="toggleExercisePanel()"]')) {
+                panel.classList.remove('open');
+            }
+        });
+
+        // Initialize first video
+        document.addEventListener('DOMContentLoaded', () => {
+            videos[0].status = "current";
+            loadVideo(0);
+        });
+    </script>
+</body>
+</html> 

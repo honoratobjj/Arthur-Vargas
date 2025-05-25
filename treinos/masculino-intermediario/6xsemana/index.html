@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6x Por Semana - OCA</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: 
+                linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+                url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGRlZnM+CjxwYXR0ZXJuIGlkPSJneW0tcGF0dGVybiIgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPgo8cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iIzFhMWExYSIvPgo8ZyBvcGFjaXR5PSIwLjEiPgo8cmVjdCB4PSIxMCIgeT0iNDAiIHdpZHRoPSI4MCIgaGVpZ2h0PSI0IiBmaWxsPSIjNzc3Ii8+CjxyZWN0IHg9IjIwIiB5PSI0NSIgd2lkdGg9IjYwIiBoZWlnaHQ9IjIiIGZpbGw9IiM1NTUiLz4KPGNpcmNsZSBjeD0iMTUiIGN5PSI0MiIgcj0iMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzU1NSIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxjaXJjbGUgY3g9Ijg1IiBjeT0iNDIiIHI9IjEwIiBmaWxsPSJub25lIiBzdHJva2U9IiM1NTUiIHN0cm9rZS13aWR0aD0iMiIvPgo8L2c+CjwvcGF0dGVybj4KPC9kZWZzPgo8cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2d5bS1wYXR0ZXJuKSIvPgo8L3N2Zz4=');
+            background-size: 200px 200px;
+            background-attachment: fixed;
+            min-height: 100vh;
+            color: white;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-oca {
+            font-size: 28px;
+            font-weight: 900;
+            letter-spacing: -2px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            font-family: 'Arial Black', sans-serif;
+        }
+
+        .logo-subtitle {
+            font-size: 8px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.9;
+            color: #ccc;
+        }
+
+        .btn-back {
+            background: linear-gradient(135deg, #1a1a1a, #333);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .btn-back:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+            background: linear-gradient(135deg, #000, #1a1a1a);
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .user-photo {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid rgba(255,255,255,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .user-photo:hover {
+            border-color: white;
+            transform: scale(1.05);
+        }
+
+        .user-name {
+            font-size: 12px;
+            color: #ccc;
+            font-weight: 500;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .page-title h1 {
+            font-size: 42px;
+            font-weight: 900;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #fff, #ccc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .page-title p {
+            font-size: 16px;
+            color: #ccc;
+            line-height: 1.6;
+        }
+
+        .workouts-container {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            box-shadow: 
+                0 25px 50px rgba(0,0,0,0.3),
+                0 0 0 1px rgba(255,255,255,0.1);
+            overflow: hidden;
+            animation: slideUp 0.8s ease-out;
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #333;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .workouts-header {
+            height: 100px;
+            background: 
+                linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.6)),
+                url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDQwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxkZWZzPgo8cGF0dGVybiBpZD0iZ3ltLWJnIiB4PSIwIiB5PSIwIiB3aWR0aD0iODAiIGhlaWdodD0iODAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPgo8cmVjdCB3aWR0aD0iODAiIGhlaWdodD0iODAiIGZpbGw9IiMyMjIiLz4KPGcgb3BhY2l0eT0iMC4zIj4KPGVsbGlwc2UgY3g9IjE1IiBjeT0iNDAiIHJ4PSIxMiIgcnk9IjQiIGZpbGw9IiM0NDQiLz4KPGVsbGlwc2UgY3g9IjY1IiBjeT0iNDAiIHJ4PSIxMiIgcnk9IjQiIGZpbGw9IiM0NDQiLz4KPHJlY3QgeD0iMjUiIHk9IjM4IiB3aWR0aD0iMzAiIGhlaWdodD0iNCIgZmlsbD0iIzU1NSIvPgo8cmVjdCB4PSIzNSIgeT0iMzAiIHdpZHRoPSIxMCIgaGVpZ2h0PSIyMCIgZmlsbD0iIzMzMyIvPgo8L2c+CjwvcGF0dGVybj4KPC9kZWZzPgo8cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0idXJsKCNneW0tYmcpIi8+Cjwvc3ZnPg==');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .workouts-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 100%);
+        }
+
+        .workouts-header h2 {
+            position: relative;
+            z-index: 2;
+            color: white;
+            font-size: 20px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .workouts-content {
+            padding: 30px;
+        }
+
+        .workouts-description {
+            color: #666;
+            margin-bottom: 25px;
+            line-height: 1.6;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .workout-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .workout-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            border: 2px solid #e1e1e1;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .workout-card:hover {
+            border-color: #1a1a1a;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .workout-letter {
+            font-size: 32px;
+            font-weight: 900;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .workout-title {
+            font-size: 16px;
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .workout-muscles {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.4;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .page-title h1 {
+                font-size: 32px;
+            }
+            
+            header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .logo-container {
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            .workout-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+        }
+
+        @media (max-width: 480px) {
+            main {
+                padding: 20px 10px;
+            }
+            
+            .workouts-content {
+                padding: 20px;
+            }
+            
+            .page-title h1 {
+                font-size: 24px;
+            }
+            
+            .workout-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <div class="logo-oca">OCA</div>
+            <div class="logo-subtitle">ARTHUR VARGAS</div>
+        </div>
+        
+        <a href="../index.html" class="btn-back">Voltar</a>
+        
+        <div class="user-info">
+            <img src="https://via.placeholder.com/48" alt="Foto do usuário" class="user-photo" />
+            <div class="user-name">João Silva</div>
+        </div>
+    </header>
+
+    <main>
+        <div class="page-title">
+            <h1>6x Por Semana</h1>
+            <p>Divisão avançada para máximos resultados</p>
+        </div>
+
+        <div class="workouts-container">
+            <div class="workouts-header">
+                <h2>Escolha seu Treino</h2>
+            </div>
+            
+            <div class="workouts-content">
+                <p class="workouts-description">
+                    Divisão avançada para quem treina seis vezes por semana. 
+                    Cada grupo muscular é trabalhado com alta frequência e volume para máximo desenvolvimento.
+                </p>
+                
+                <div class="workout-grid">
+                    <div class="workout-card" onclick="window.location.href='treinoA.html'">
+                        <div class="workout-letter">A</div>
+                        <div class="workout-title">Treino A</div>
+                        <div class="workout-muscles">
+                            Peitoral
+                        </div>
+                    </div>
+                    
+                    <div class="workout-card" onclick="window.location.href='treinoB.html'">
+                        <div class="workout-letter">B</div>
+                        <div class="workout-title">Treino B</div>
+                        <div class="workout-muscles">
+                            Dorsal
+                        </div>
+                    </div>
+                    
+                    <div class="workout-card" onclick="window.location.href='treinoC.html'">
+                        <div class="workout-letter">C</div>
+                        <div class="workout-title">Treino C</div>
+                        <div class="workout-muscles">
+                            Deltoide
+                        </div>
+                    </div>
+                    
+                    <div class="workout-card" onclick="window.location.href='treinoD.html'">
+                        <div class="workout-letter">D</div>
+                        <div class="workout-title">Treino D</div>
+                        <div class="workout-muscles">
+                            Bíceps
+                        </div>
+                    </div>
+                    
+                    <div class="workout-card" onclick="window.location.href='treinoE.html'">
+                        <div class="workout-letter">E</div>
+                        <div class="workout-title">Treino E</div>
+                        <div class="workout-muscles">
+                            Tríceps
+                        </div>
+                    </div>
+                    
+                    <div class="workout-card" onclick="window.location.href='treinoF.html'">
+                        <div class="workout-letter">F</div>
+                        <div class="workout-title">Treino F</div>
+                        <div class="workout-muscles">
+                            Membros Inferiores + Abdômen
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html> 

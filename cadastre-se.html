@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro OCA</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: 
+                linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+                url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGRlZnM+CjxwYXR0ZXJuIGlkPSJneW0tcGF0dGVybiIgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPgo8cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iIzFhMWExYSIvPgo8ZyBvcGFjaXR5PSIwLjEiPgo8cmVjdCB4PSIxMCIgeT0iNDAiIHdpZHRoPSI4MCIgaGVpZ2h0PSI0IiBmaWxsPSIjNzc3Ii8+CjxyZWN0IHg9IjIwIiB5PSI0NSIgd2lkdGg9IjYwIiBoZWlnaHQ9IjIiIGZpbGw9IiM1NTUiLz4KPGNpcmNsZSBjeD0iMTUiIGN5PSI0MiIgcj0iMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzU1NSIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxjaXJjbGUgY3g9Ijg1IiBjeT0iNDIiIHI9IjEwIiBmaWxsPSJub25lIiBzdHJva2U9IiM1NTUiIHN0cm9rZS13aWR0aD0iMiIvPgo8L2c+CjwvcGF0dGVybj4KPC9kZWZzPgo8cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2d5bS1wYXR0ZXJuKSIvPgo8L3N2Zz4=');
+            background-size: 200px 200px;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 0;
+        }
+
+        main {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 20px;
+        }
+
+        #cadastro {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            box-shadow: 
+                0 25px 50px rgba(0,0,0,0.3),
+                0 0 0 1px rgba(255,255,255,0.1);
+            overflow: hidden;
+            animation: slideUp 0.8s ease-out;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        #imagem {
+            height: 160px;
+            background: 
+                linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.6)),
+                url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjE2MCIgdmlld0JveD0iMCAwIDQwMCAxNjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxkZWZzPgo8cGF0dGVybiBpZD0iZ3ltLWJnIiB4PSIwIiB5PSIwIiB3aWR0aD0iODAiIGhlaWdodD0iODAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPgo8cmVjdCB3aWR0aD0iODAiIGhlaWdodD0iODAiIGZpbGw9IiMyMjIiLz4KPGcgb3BhY2l0eT0iMC4zIj4KPGVsbGlwc2UgY3g9IjE1IiBjeT0iNDAiIHJ4PSIxMiIgcnk9IjQiIGZpbGw9IiM0NDQiLz4KPGVsbGlwc2UgY3g9IjY1IiBjeT0iNDAiIHJ4PSIxMiIgcnk9IjQiIGZpbGw9IiM0NDQiLz4KPHJlY3QgeD0iMjUiIHk9IjM4IiB3aWR0aD0iMzAiIGhlaWdodD0iNCIgZmlsbD0iIzU1NSIvPgo8cmVjdCB4PSIzNSIgeT0iMzAiIHdpZHRoPSIxMCIgaGVpZ2h0PSIyMCIgZmlsbD0iIzMzMyIvPgo8L2c+CjwvcGF0dGVybj4KPC9kZWZzPgo8cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjE2MCIgZmlsbD0idXJsKCNneW0tYmcpIi8+Cjwvc3ZnPg==');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #imagem::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 100%);
+        }
+
+        .logo-container {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: white;
+        }
+
+        .logo-oca {
+            font-size: 48px;
+            font-weight: 900;
+            letter-spacing: -2px;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            font-family: 'Arial Black', sans-serif;
+        }
+
+        .logo-subtitle {
+            font-size: 12px;
+            font-weight: 300;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            opacity: 0.9;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        #formulario {
+            padding: 50px 40px 40px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        p {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .campo {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .campo.full-width {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="date"],
+        input[type="tel"] {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e1e1e1;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: #fafafa;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="password"]:focus,
+        input[type="date"]:focus,
+        input[type="tel"]:focus {
+            outline: none;
+            border-color: #1a1a1a;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(26, 26, 26, 0.1);
+        }
+
+        .campo.error input {
+            border-color: #e74c3c;
+            background: #ffeaea;
+        }
+
+        .error-msg {
+            color: #e74c3c;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .password-strength {
+            margin-top: 8px;
+            height: 4px;
+            background: #e1e1e1;
+            border-radius: 2px;
+            overflow: hidden;
+            display: none;
+        }
+
+        .password-strength-bar {
+            height: 100%;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .strength-weak { background: #e74c3c; width: 33%; }
+        .strength-medium { background: #f39c12; width: 66%; }
+        .strength-strong { background: #27ae60; width: 100%; }
+
+        .button-group {
+            margin-top: 30px;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #1a1a1a, #333);
+            color: white;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+            background: linear-gradient(135deg, #000, #1a1a1a);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #1a1a1a;
+            border: 2px solid #1a1a1a;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .btn-secondary:hover:not(:disabled) {
+            background: #1a1a1a;
+            color: white;
+        }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .loading-spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid transparent;
+            border-top: 2px solid currentColor;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            margin-right: 8px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(4px);
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: white;
+            margin: 10% auto;
+            padding: 30px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            animation: modalSlide 0.3s ease;
+            position: relative;
+        }
+
+        @keyframes modalSlide {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-content h3 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .modal-content p {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .modal-close {
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #999;
+            width: auto;
+            padding: 5px;
+            margin: 0;
+        }
+
+        .modal-close:hover {
+            color: #333;
+        }
+
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            }
+            
+        @media (max-width: 480px) {
+            #formulario {
+                padding: 30px 20px 20px;
+            }
+            
+            main {
+                margin: 0 10px;
+            }
+        }
+
+        /* Accessibility improvements */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            white-space: nowrap;
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <section id="cadastro">
+            <div id="imagem">
+                <div class="logo-container">
+                    <div class="logo-oca">OCA</div>
+                    <div class="logo-subtitle">ARTHUR VARGAS</div>
+                </div>
+            </div>
+            <div id="formulario">
+                <h1>Cadastro</h1>
+                <p>Junte-se à nossa comunidade e transforme seu corpo e mente!</p>
+                
+                <form id="cadastroForm" novalidate>
+                    <div class="form-grid">
+                        <div class="campo">
+                            <label for="nome">Nome</label>
+                            <input 
+                                type="text" 
+                                name="nome" 
+                                id="nome" 
+                                placeholder="Seu nome"
+                                required
+                                aria-describedby="nome-error"
+                            >
+                            <div class="error-msg" id="nome-error" role="alert"></div>
+                        </div>
+                        
+                        <div class="campo">
+                            <label for="sobrenome">Sobrenome</label>
+                            <input 
+                                type="text" 
+                                name="sobrenome" 
+                                id="sobrenome" 
+                                placeholder="Seu sobrenome"
+                                required
+                                aria-describedby="sobrenome-error"
+                            >
+                            <div class="error-msg" id="sobrenome-error" role="alert"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="campo">
+                        <label for="email">Email</label>
+                        <input 
+                            type="email" 
+                            name="email" 
+                            id="email" 
+                            placeholder="seu@email.com"
+                            autocomplete="email"
+                            required
+                            aria-describedby="email-error"
+                        >
+                        <div class="error-msg" id="email-error" role="alert"></div>
+                    </div>
+                    
+                    <div class="form-grid">
+                        <div class="campo">
+                            <label for="senha">Senha</label>
+                            <input 
+                                type="password" 
+                                name="senha" 
+                                id="senha" 
+                                placeholder="Crie uma senha forte"
+                                required
+                                aria-describedby="senha-error senha-strength"
+                            >
+                            <div class="password-strength" id="senha-strength">
+                                <div class="password-strength-bar"></div>
+                            </div>
+                            <div class="error-msg" id="senha-error" role="alert"></div>
+                        </div>
+                        
+                        <div class="campo">
+                            <label for="confirma">Confirmar Senha</label>
+                            <input 
+                                type="password" 
+                                name="confirma" 
+                                id="confirma" 
+                                placeholder="Confirme sua senha"
+                                required
+                                aria-describedby="confirma-error"
+                            >
+                            <div class="error-msg" id="confirma-error" role="alert"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-grid">
+                        <div class="campo">
+                            <label for="nascimento">Data de Nascimento</label>
+                            <input 
+                                type="date" 
+                                name="nascimento" 
+                                id="nascimento" 
+                                required
+                                aria-describedby="nascimento-error"
+                            >
+                            <div class="error-msg" id="nascimento-error" role="alert"></div>
+                        </div>
+                        
+                        <div class="campo">
+                            <label for="telefone">Telefone</label>
+                            <input 
+                                type="tel" 
+                                name="telefone" 
+                                id="telefone" 
+                                placeholder="(11) 99999-9999"
+                                aria-describedby="telefone-error"
+                            >
+                            <div class="error-msg" id="telefone-error" role="alert"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="button-group">
+                        <button type="submit" class="btn-primary" id="cadastroBtn">
+                            <span class="btn-text">Cadastrar</span>
+                        </button>
+                        
+                        <button type="button" class="btn-secondary" onclick="window.location.href='index.html'">
+                            Já tenho conta
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Accessible Modal -->
+    <div id="modal" class="modal" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description" aria-hidden="true">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()" aria-label="Fechar modal">&times;</button>
+            <h3 id="modal-title">Notificação</h3>
+            <p id="modal-description">Mensagem aqui</p>
+            <button type="button" class="btn-primary" onclick="closeModal()">Entendi</button>
+        </div>
+    </div>
+
+    <script>
+        class CadastroManager {
+            constructor() {
+                this.form = document.getElementById('cadastroForm');
+                this.cadastroBtn = document.getElementById('cadastroBtn');
+                this.modal = document.getElementById('modal');
+                this.isLoading = false;
+                
+                this.init();
+            }
+            
+            init() {
+                this.form.addEventListener('submit', this.handleSubmit.bind(this));
+                this.setupValidation();
+                this.setupPasswordStrength();
+                this.setupPhoneMask();
+                this.setupKeyboardNavigation();
+            }
+            
+            setupValidation() {
+                const inputs = this.form.querySelectorAll('input[required], input[type="email"], input[type="password"]');
+                inputs.forEach(input => {
+                    input.addEventListener('blur', () => this.validateField(input));
+                    input.addEventListener('input', () => this.clearFieldError(input));
+                });
+            }
+            
+            setupPasswordStrength() {
+                const senhaInput = document.getElementById('senha');
+                const strengthIndicator = document.getElementById('senha-strength');
+                const strengthBar = strengthIndicator.querySelector('.password-strength-bar');
+                
+                senhaInput.addEventListener('input', (e) => {
+                    const password = e.target.value;
+                    const strength = this.calculatePasswordStrength(password);
+                    
+                    if (password.length > 0) {
+                        strengthIndicator.style.display = 'block';
+                        strengthBar.className = 'password-strength-bar';
+                        
+                        if (strength < 3) {
+                            strengthBar.classList.add('strength-weak');
+                        } else if (strength < 5) {
+                            strengthBar.classList.add('strength-medium');
+                        } else {
+                            strengthBar.classList.add('strength-strong');
+                        }
+                    } else {
+                        strengthIndicator.style.display = 'none';
+                    }
+                });
+            }
+            
+            calculatePasswordStrength(password) {
+                let strength = 0;
+                if (password.length >= 8) strength++;
+                if (/[a-z]/.test(password)) strength++;
+                if (/[A-Z]/.test(password)) strength++;
+                if (/[0-9]/.test(password)) strength++;
+                if (/[^A-Za-z0-9]/.test(password)) strength++;
+                return strength;
+            }
+            
+            setupPhoneMask() {
+                const telefoneInput = document.getElementById('telefone');
+                telefoneInput.addEventListener('input', (e) => {
+                    let value = e.target.value.replace(/\D/g, '');
+                    if (value.length <= 11) {
+                        value = value.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+                        if (value.length < 14) {
+                            value = value.replace(/(\d{2})(\d{4})(\d{4})/, '($1) $2-$3');
+                        }
+                        e.target.value = value;
+                    }
+                });
+            }
+            
+            setupKeyboardNavigation() {
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && this.modal.style.display === 'block') {
+                        this.closeModal();
+                    }
+                });
+            }
+            
+            validateField(input) {
+                const field = input.closest('.campo');
+                const errorElement = field.querySelector('.error-msg');
+                let isValid = true;
+                let errorMessage = '';
+                
+                if (input.type === 'text' && input.required) {
+                    if (!input.value.trim()) {
+                        errorMessage = `${input.previousElementSibling.textContent} é obrigatório`;
+                        isValid = false;
+                    } else if (input.value.trim().length < 2) {
+                        errorMessage = `${input.previousElementSibling.textContent} deve ter pelo menos 2 caracteres`;
+                        isValid = false;
+                    }
+                } else if (input.type === 'email') {
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!input.value.trim()) {
+                        errorMessage = 'Email é obrigatório';
+                        isValid = false;
+                    } else if (!emailRegex.test(input.value)) {
+                        errorMessage = 'Email inválido';
+                        isValid = false;
+                    }
+                } else if (input.type === 'password') {
+                    if (!input.value.trim()) {
+                        errorMessage = 'Senha é obrigatória';
+                        isValid = false;
+                    } else if (input.value.length < 6) {
+                        errorMessage = 'Senha deve ter pelo menos 6 caracteres';
+                        isValid = false;
+                    } else if (input.id === 'confirma') {
+                        const senhaInput = document.getElementById('senha');
+                        if (input.value !== senhaInput.value) {
+                            errorMessage = 'Senhas não coincidem';
+                            isValid = false;
+                        }
+                    }
+                } else if (input.type === 'date' && input.required) {
+                    if (!input.value) {
+                        errorMessage = 'Data de nascimento é obrigatória';
+                        isValid = false;
+                    } else {
+                        const birthDate = new Date(input.value);
+                        const today = new Date();
+                        const age = today.getFullYear() - birthDate.getFullYear();
+                        if (age < 16) {
+                            errorMessage = 'Você deve ter pelo menos 16 anos';
+                            isValid = false;
+                        }
+                    }
+                }
+                
+                this.setFieldError(field, errorElement, errorMessage);
+                return isValid;
+            }
+            
+            setFieldError(field, errorElement, message) {
+                if (message) {
+                    field.classList.add('error');
+                    errorElement.textContent = message;
+                    errorElement.style.display = 'block';
+                } else {
+                    field.classList.remove('error');
+                    errorElement.style.display = 'none';
+                }
+            }
+            
+            clearFieldError(input) {
+                const field = input.closest('.campo');
+                const errorElement = field.querySelector('.error-msg');
+                field.classList.remove('error');
+                errorElement.style.display = 'none';
+            }
+            
+            async handleSubmit(e) {
+                e.preventDefault();
+                
+                if (this.isLoading) return;
+                
+                const formData = new FormData(this.form);
+                const data = Object.fromEntries(formData);
+                
+                // Validate all fields
+                const inputs = this.form.querySelectorAll('input[required], input[type="email"], input[type="password"]');
+                let allValid = true;
+                
+                inputs.forEach(input => {
+                    if (!this.validateField(input)) {
+                        allValid = false;
+                    }
+                });
+                
+                if (!allValid) {
+                    this.showModal('Erro de Validação', 'Por favor, corrija os erros antes de continuar.');
+                    return;
+                }
+                
+                this.setLoading(true);
+                
+                try {
+                    // Simulate API call
+                    await this.simulateCadastro(data);
+                    
+                    this.showModal('Sucesso!', 'Cadastro realizado com sucesso! Redirecionando para o login...', () => {
+                        window.location.href = 'index.html';
+                    });
+                    
+                } catch (error) {
+                    this.showModal('Erro no Cadastro', error.message || 'Erro interno do servidor. Tente novamente.');
+                } finally {
+                    this.setLoading(false);
+                }
+            }
+            
+            async simulateCadastro(data) {
+                // Simulate network delay
+                await new Promise(resolve => setTimeout(resolve, 2000));
+                
+                // Simulate different responses
+                if (data.email === 'test@exists.com') {
+                    throw new Error('Este email já está cadastrado. Tente fazer login.');
+                }
+                
+                // Simulate success
+                return { success: true, message: 'Cadastro realizado com sucesso!' };
+            }
+            
+            setLoading(loading) {
+                this.isLoading = loading;
+                const btnText = this.cadastroBtn.querySelector('.btn-text');
+                
+                if (loading) {
+                    this.cadastroBtn.disabled = true;
+                    btnText.innerHTML = '<span class="loading-spinner"></span>Cadastrando...';
+                } else {
+                    this.cadastroBtn.disabled = false;
+                    btnText.textContent = 'Cadastrar';
+                }
+            }
+            
+            showModal(title, message, callback = null) {
+                const modalTitle = document.getElementById('modal-title');
+                const modalDescription = document.getElementById('modal-description');
+                
+                modalTitle.textContent = title;
+                modalDescription.textContent = message;
+                
+                this.modal.style.display = 'block';
+                this.modal.setAttribute('aria-hidden', 'false');
+                
+                // Focus management
+                const closeBtn = this.modal.querySelector('.modal-close');
+                closeBtn.focus();
+                
+                // Store callback for after modal closes
+                this.modalCallback = callback;
+            }
+            
+            closeModal() {
+                this.modal.style.display = 'none';
+                this.modal.setAttribute('aria-hidden', 'true');
+                
+                // Return focus to form
+                this.form.querySelector('#nome').focus();
+                
+                // Execute callback if provided
+                if (this.modalCallback) {
+                    this.modalCallback();
+                    this.modalCallback = null;
+                }
+            }
+        }
+        
+        // Global functions for backward compatibility
+        function closeModal() {
+            if (window.cadastroManager) {
+                window.cadastroManager.closeModal();
+            }
+        }
+        
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            window.cadastroManager = new CadastroManager();
+        });
+    </script>
+</body>
+</html>
